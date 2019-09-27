@@ -5,8 +5,8 @@
  */
 namespace Eriocnemis\Indexer\Block\Adminhtml\Grid\Column;
 
-use \Magento\Framework\DataObject;
-use \Magento\Backend\Block\Widget\Grid\Column;
+use Magento\Framework\DataObject;
+use Magento\Backend\Block\Widget\Grid\Column;
 
 /**
  * Action render

@@ -5,13 +5,13 @@
  */
 namespace Eriocnemis\Indexer\Controller\Adminhtml\Indexer;
 
-use \Magento\Framework\App\ResponseInterface;
-use \Magento\Framework\Indexer\IndexerInterface;
-use \Magento\Framework\Indexer\IndexerRegistry;
-use \Magento\Framework\Exception\LocalizedException;
-use \Magento\Backend\App\Action\Context;
-use \Magento\Indexer\Controller\Adminhtml\Indexer as Action;
-use \Psr\Log\LoggerInterface;
+use Magento\Framework\App\ResponseInterface;
+use Magento\Framework\Indexer\IndexerInterface;
+use Magento\Framework\Indexer\IndexerRegistry;
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Backend\App\Action\Context;
+use Magento\Indexer\Controller\Adminhtml\Indexer as Action;
+use Psr\Log\LoggerInterface;
 
 /**
  * Mass reindex controller
