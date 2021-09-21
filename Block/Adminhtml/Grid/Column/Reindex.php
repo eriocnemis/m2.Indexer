@@ -18,7 +18,7 @@ class Reindex extends Column
     /**
      * Add decorated action to column
      *
-     * @return array
+     * @return mixed[]
      */
     public function getFrameCallback()
     {

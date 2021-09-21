@@ -64,25 +64,26 @@ class Reindex extends Action
             $this->messageManager->addError(
                 __('Please select indexer.')
             );
-        } else {
-            try {
-                /** @var IndexerInterface $indexer */
-                $indexer = $this->indexerRegistry->get($indexerId);
-                $indexer->reindexAll();
-
-                $this->messageManager->addSuccess(
-                    __('%1 index was rebuilt.', $indexer->getTitle())
-                );
-            } catch (LocalizedException $e) {
-                $this->messageManager->addError($e->getMessage());
-            } catch (\Exception $e) {
-                $this->messageManager->addError(
-                    __('There was a problem with reindexing process.')
-                );
-                $this->logger->critical($e);
-            }
+            return $this->_redirect('*/*/list');
         }
-        $this->_redirect('*/*/list');
+
+        try {
+            /** @var IndexerInterface $indexer */
+            $indexer = $this->indexerRegistry->get($indexerId);
+            $indexer->reindexAll();
+
+            $this->messageManager->addSuccess(
+                __('%1 index was rebuilt.', $indexer->getTitle())
+            );
+        } catch (LocalizedException $e) {
+            $this->messageManager->addError($e->getMessage());
+        } catch (\Exception $e) {
+            $this->messageManager->addError(
+                __('There was a problem with reindexing process.')
+            );
+            $this->logger->critical($e);
+        }
+        return $this->_redirect('*/*/list');
     }
 
     /**

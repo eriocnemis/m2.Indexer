@@ -64,27 +64,28 @@ class MassReindex extends Action
             $this->messageManager->addError(
                 __('Please select indexers.')
             );
-        } else {
-            try {
-                foreach ($indexerIds as $indexerId) {
-                    /** @var IndexerInterface $indexer */
-                    $indexer = $this->indexerRegistry->get($indexerId);
-                    $indexer->reindexAll();
-                }
-
-                $this->messageManager->addSuccess(
-                    __('Total of %1 index(es) have reindexed data.', count($indexerIds))
-                );
-            } catch (LocalizedException $e) {
-                $this->messageManager->addError($e->getMessage());
-            } catch (\Exception $e) {
-                $this->messageManager->addError(
-                    __('There was a problem with reindexing process.')
-                );
-                $this->logger->critical($e);
-            }
+            return $this->_redirect('*/*/list');
         }
-        $this->_redirect('*/*/list');
+
+        try {
+            foreach ($indexerIds as $indexerId) {
+                /** @var IndexerInterface $indexer */
+                $indexer = $this->indexerRegistry->get($indexerId);
+                $indexer->reindexAll();
+            }
+
+            $this->messageManager->addSuccess(
+                __('Total of %1 index(es) have reindexed data.', count($indexerIds))
+            );
+        } catch (LocalizedException $e) {
+            $this->messageManager->addError($e->getMessage());
+        } catch (\Exception $e) {
+            $this->messageManager->addError(
+                __('There was a problem with reindexing process.')
+            );
+            $this->logger->critical($e);
+        }
+        return $this->_redirect('*/*/list');
     }
 
     /**
